@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Meme Gen</title>
 </head>
 
@@ -20,6 +20,8 @@
 
 
         <section class="editor">
+            <button onclick="onFontSizeChange(name)" name="down">Down</button>
+            <button onclick="onFontSizeChange(name)" name="up">Up</button>
             <button onclick="onFontSizeChange(name)" name="minus">-</button>
             <button onclick="onFontSizeChange(name)" name="plus">+</button>
             Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
@@ -44,13 +46,13 @@
 
 
     <!-- scripts -->
-    <script src="/js/halpers/utils.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/halpers/addListeners.js"></script>
-    <script src="/js/meme.controller.js"></script>
-    <script src="/js/meme.services.js"></script>
-    <script src="/js/gallery.controller.js"></script>
-    <script src="/js/gallery.services.js"></script>
+    <script src="js/halpers/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/halpers/addListeners.js"></script>
+    <script src="js/meme.controller.js"></script>
+    <script src="js/meme.services.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/gallery.services.js"></script>
 
 
 

@@ -9,7 +9,7 @@ function onInitGallery(){
 function renderGallery(){
     const strHTML = `
     <img onclick="onImgSelect(this.src)" src="images/meme-imgs_square/1.jpg" alt="">
-    <img onclick="onImgSelect(this.src)" src="/images/dog.jpg" alt="">
+    <img onclick="onImgSelect(this.src)" src="images/dog.jpg" alt="">
 
     `
 
