@@ -1,0 +1,32 @@
+
+.editor{
+    background: var(--clr5);
+    display: grid;
+    grid-template-columns: 3fr 1fr ;
+    grid-template-rows: 1fr;
+
+}
+
+
+.canvas-container{
+    padding-block-start: 24px;
+    padding-block-end: 24px;
+
+  
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+}
+.canvas{
+
+}
+
+.editor a{
+    color: var(--clr2);
+    margin-block-end: 30px;
+}
+
+.control-box{
+    background: var(--clr4);
+    padding-inline-start:35px ;
+}

@@ -2,6 +2,7 @@
 @import "./gallery.css";
 @import "./canvas.css";
 @import "./editor.css";
+@import "./search.css";
 
 
 /* vars */
@@ -16,7 +17,15 @@
   --clr2: #989898;
   /* paragraph color */
   --clr3: #FF9826;
+  /* bg color */
+  --clr4: #F8F8F8;
+  /* second bg color */
+  --clr5: #FFFFFF;
 
+
+  /* bp */
+
+  --l: 980px;
 
 }
 
@@ -24,12 +33,12 @@
 
 body {
   margin: 0;
-  background: #F8F8F8;
+  background: var(--clr4);
 }
 
 .main-layout>*:not(.full) {
   /* max-width: 980px; */
-  max-width: 980px;
+  max-width: var(--l);
   margin-left: auto;
   margin-right: auto;
 }
@@ -40,3 +49,6 @@ img {
 }
 
 
+.display {
+  display: none;
+}

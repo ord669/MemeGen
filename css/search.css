@@ -1,0 +1,27 @@
+.search input{
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    width: calc(var(--l) - 5.5%);
+}
+.search input:focus-visible{
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    outline: 0px solid crimson;
+
+}
+
+.search{
+    width:calc(var(--l) - 1.5%);
+    background-color: var(--clr5);
+    height: 42px;
+    margin-top: 30px;
+    border-radius: 80px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: var(--clr2);
+}
