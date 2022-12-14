@@ -7,17 +7,17 @@ function onInitGallery(){
 }
 
 function renderGallery(){
-    const strHTML = `
-    <img onclick="onImgSelect(this.src)" src="images/meme-imgs_square/1.jpg" alt="">
-    <img onclick="onImgSelect(this.src)" src="images/dog.jpg" alt="">
+    const strHTML = gImgs.map(img => `
+    <img class="photo" onclick="onImgSelect(${img.id})" src="images/meme-imgs_square/${img.id}.jpg" alt="">
+    `)
 
-    `
-
-    document.querySelector('.gallery').innerHTML = strHTML
+    document.querySelector('.gallery').innerHTML = strHTML.join('')
 }
 
-function onImgSelect(url){
-    setImg(url)
+function onImgSelect(id){
+
+    console.log('id:', id)
+    setImg(id)
     renderMeme()
 
 }

@@ -1,16 +1,42 @@
-body{
-    margin: 0;
-    
+@import "/css/header.css";
+@import "/css/gallery.css";
+@import "/css/canvas.css";
+@import "/css/editor.css";
+
+
+/* vars */
+
+:root {
+  /* pallete */
+  /* header color */
+  --clr0: #292929;
+  /* headline text color */
+  --clr1: #727272;
+  /* paragraph color */
+  --clr2: #989898;
+  /* paragraph color */
+  --clr3: #FF9826;
+
+
 }
 
-.container{
-    margin: 0px auto;
-  display: flex;
-  cursor: grab;
-  background-color: #f1f8ff;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  justify-content: center;
+
+
+body {
+  margin: 0;
+  background: #F8F8F8;
 }
+
+.main-layout>*:not(.full) {
+  /* max-width: 980px; */
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+img {
+  width: 100%;
+}
+
 

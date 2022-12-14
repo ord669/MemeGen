@@ -2,6 +2,7 @@
 
 
 function onInit(){
+    
     onInitGallery()
     onInitMeme()
 
@@ -11,17 +12,8 @@ function onInit(){
 
 //get color value
 function onColorPick(ev, name) {
-    switch (name) {
-        case 'fillColor':
-            gFillColor = ev
-            console.log('gColorFill:', gFillColor)
+    setLineTxColors(ev, name)
 
-            break
-        case 'borderColor':
-            gBorderColor = ev
-            console.log('gColorBorder:', gBorderColor)
-            break
-    }
     renderMeme()
 
 }
@@ -33,4 +25,12 @@ function onFontSizeChange(name){
         gFontSize++
     }
     renderMeme()
+}
+
+
+function onSwitchLine(){
+    const idx =  setSelectedLineIdx()
+    setFocusState(idx)
+    
+    
 }

@@ -10,7 +10,26 @@
 </head>
 
 <body onload="onInit()">
-    <div class="container">
+    <div class="main-layout">
+        <header class="full main-layout">
+            <div class="header-container">
+                <div class="logo"><h2>logo</h2></div>
+                <nav>
+                    <ul class="clean-list">
+                        <li><a href="#" class="active">Memes</a></li>
+                        <li><a href="#">Gallety</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </header>
+       
+        <div class="search">search</div>
+
+
+
+
         <section class="gallery">
 
 
@@ -19,13 +38,15 @@
 
 
 
-        <section class="editor">
+        <section class="editor" >
+            <button onclick="onSwitchLine(name)">Switch Line</button>
             <button onclick="onFontSizeChange(name)" name="down">Down</button>
             <button onclick="onFontSizeChange(name)" name="up">Up</button>
             <button onclick="onFontSizeChange(name)" name="minus">-</button>
             <button onclick="onFontSizeChange(name)" name="plus">+</button>
-            Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
-            Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
+            Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
+           
+            Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
                 value="#bdf524" />
 
             <input type="text" onkeyup="onTextInput(this.value)">
@@ -49,8 +70,8 @@
     <script src="js/halpers/utils.js"></script>
     <script src="js/main.js"></script>
     <script src="js/halpers/addListeners.js"></script>
-    <script src="js/meme.controller.js"></script>
     <script src="js/meme.services.js"></script>
+    <script src="js/meme.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/gallery.services.js"></script>
 

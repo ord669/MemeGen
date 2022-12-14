@@ -18,7 +18,7 @@ function onInitMeme() {
     // createCircle(center)
 
     addListeners()
-    renderCanvas()
+    // renderCanvas()
     renderMeme()
 
 }
@@ -68,7 +68,7 @@ function onMove(ev) {
     // Save the last pos , we remember where we`ve been and move accordingly
     gStartPos = pos
     // The canvas is render again after every move
-    renderCanvas()
+    // renderCanvas()
 }
 
 function onUp() {
@@ -81,6 +81,7 @@ function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
+    renderMeme()
 }
 
 
