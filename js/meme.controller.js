@@ -3,6 +3,7 @@
 let gElCanvas
 let gCtx
 let gStartPos
+
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
@@ -30,12 +31,19 @@ function renderCanvas() {
 }
 
 
+function renderMeme(){
+    getMeme()
+
+}
+
+
+
+
 
 function onDown(ev) {
     // Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
     // if (!isCircleClicked(pos)) return
-
     // setCircleDrag(true)
     //Save the pos we start from
     gStartPos = pos
@@ -46,6 +54,8 @@ function onMove(ev) {
     // const { isDrag } = getCircle()
 
     // if (!isDrag) return
+    renderMeme()
+
     
     const pos = getEvPos(ev)
     console.log('pos:', pos)
@@ -93,3 +103,10 @@ function getEvPos(ev) {
     }
     return pos
 }
+
+function onTextInput(ev){
+    setLineTxt(ev)
+    renderMeme()
+
+}
+
