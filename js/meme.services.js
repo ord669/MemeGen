@@ -7,6 +7,7 @@ let gText = ''
 
 let gFillColor = '#FFFFFF'
 let gBorderColor = '#bdf524'
+let gFontSize = 40 
 
 
 function getMeme(){
@@ -40,7 +41,7 @@ function drawText(text, x, y) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = gBorderColor
     gCtx.fillStyle = gFillColor
-    gCtx.font = "40px arial";
+    gCtx.font = `${gFontSize }px arial`;
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 

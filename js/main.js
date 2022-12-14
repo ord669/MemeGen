@@ -22,6 +22,15 @@ function onColorPick(ev, name) {
             console.log('gColorBorder:', gBorderColor)
             break
     }
+    renderMeme()
 
+}
 
+function onFontSizeChange(name){
+    if(name === 'minus'){
+        gFontSize--
+    }else{
+        gFontSize++
+    }
+    renderMeme()
 }
