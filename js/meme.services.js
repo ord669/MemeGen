@@ -2,8 +2,11 @@
 
 
 let gMeme 
-let gMemeImg
-let gText
+let gMemeImg = '/images/dog.jpg'
+let gText = ''
+
+let gFillColor = '#FFFFFF'
+let gBorderColor = '#bdf524'
 
 
 function getMeme(){
@@ -19,7 +22,7 @@ function getMeme(){
 
 function drawImg() {
     const elImg = new Image() // Create a new html img element
-    elImg.src = '/images/dog.jpg' // Send a network req to get that image, define the img src
+    elImg.src = gMemeImg // Send a network req to get that image, define the img src
     // setTimeout(() => {
     //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     // }, 10);
@@ -35,8 +38,8 @@ function drawImg() {
 
 function drawText(text, x, y) {
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'brown'
-    gCtx.fillStyle = 'black'
+    gCtx.strokeStyle = gBorderColor
+    gCtx.fillStyle = gFillColor
     gCtx.font = "40px arial";
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
@@ -47,5 +50,10 @@ function drawText(text, x, y) {
 
 
 function setLineTxt(text){
-    gText = text
+    gText = text 
+}
+
+
+function setImg(url){
+    gMemeImg = url
 }

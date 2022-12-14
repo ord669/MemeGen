@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +8,28 @@
     <link rel="stylesheet" href="/css/main.css">
     <title>Meme Gen</title>
 </head>
+
 <body onload="onInit()">
     <div class="container">
         <section class="gallery">
 
-            
+
         </section>
-        
-        
-        
-        
+
+
+
+
         <section class="editor">
+            Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
+            Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
+                value="#bdf524" />
+
             <input type="text" onkeyup="onTextInput(this.value)">
             <div class="canvas-container">
-                <canvas
-                width="400"
-                height="400"
-                style="outline: 1px solid green"
-              ></canvas>
+                <canvas width="400" height="400" style="outline: 1px solid green"></canvas>
             </div>
         </section>
-        
+
 
     </div>
 
@@ -39,13 +41,17 @@
 
 
 
-<!-- scripts -->
+    <!-- scripts -->
     <script src="/js/halpers/utils.js"></script>
+    <script src="/js/main.js"></script>
     <script src="/js/halpers/addListeners.js"></script>
     <script src="/js/meme.controller.js"></script>
-    <script src="/js/services.js"></script>
+    <script src="/js/meme.services.js"></script>
+    <script src="/js/gallery.controller.js"></script>
+    <script src="/js/gallery.services.js"></script>
 
 
 
 </body>
+
 </html>

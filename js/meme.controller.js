@@ -7,7 +7,7 @@ let gStartPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
-function onInit() {
+function onInitMeme() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
@@ -19,6 +19,8 @@ function onInit() {
 
     addListeners()
     renderCanvas()
+    renderMeme()
+
 }
 
 
