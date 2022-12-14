@@ -5,15 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css">
-    <title>Document</title>
+    <title>Meme Gen</title>
 </head>
-<body>
-<section class="gallery"></section>
+<body onload="onInit()">
+    <div class="container">
+        <section class="gallery">
 
+            
+        </section>
+        
+        
+        
+        
+        <section class="editor">
+            <div class="canvas-container">
+                <canvas
+                width="400"
+                height="400"
+                style="outline: 1px solid green"
+              ></canvas>
+            </div>
+        </section>
+        
 
-
-
-<section class="editor"></section>
+    </div>
 
 
 
@@ -24,6 +39,8 @@
 
 
 <!-- scripts -->
+    <script src="/js/halpers/utils.js"></script>
+    <script src="/js/halpers/addListeners.js"></script>
     <script src="/js/meme.controller.js"></script>
     <script src="/js/services.js"></script>
 
