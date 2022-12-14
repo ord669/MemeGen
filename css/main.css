@@ -1,7 +1,7 @@
-@import "header.css";
-@import "gallery.css";
-@import "canvas.css";
-@import "editor.css";
+@import "./header.css";
+@import "./gallery.css";
+@import "./canvas.css";
+@import "./editor.css";
 
 
 /* vars */
