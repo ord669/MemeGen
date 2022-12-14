@@ -17,9 +17,6 @@
     flex-direction: column;
     height: 700px;
 }
-.canvas{
-
-}
 
 .editor a{
     color: var(--clr2);
