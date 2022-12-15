@@ -19,11 +19,9 @@ function onColorPick(ev, name) {
 }
 
 function onFontSizeChange(name){
-    if(name === 'minus'){
-        gFontSize--
-    }else{
-        gFontSize++
-    }
+    console.log('clickes=d:', 'clickes')
+    setFontSize(name)
+   
     renderMeme()
 }
 
@@ -61,4 +59,11 @@ function toggleDisplay(ev,pressedOn){
             document.querySelector('.editor').classList.remove('display')
             break
     }
+}
+
+
+function onFlexable(){
+    // console.log(' getRandomInt(0,gImgs):',  getRandomInt(1,gImgs.length+1))
+    gMeme.selectedImgId = getRandomInt(1,gImgs.length+1)
+    renderMeme()
 }

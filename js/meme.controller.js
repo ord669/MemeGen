@@ -13,7 +13,7 @@ function onInitMeme() {
 
     resizeCanvas()
     //Calc the center of the canvas
-    const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+
     //Create the circle in the center
     // createCircle(center)
 
@@ -33,10 +33,28 @@ function renderCanvas() {
 }
 
 
-function renderMeme(){
-    getMeme()
 
+
+
+function renderMeme() {
+    const {x : centerX , y : centerY} = getCenter(gElCanvas)
+    
+   
+
+    const elImg = new Image() // Create a new html img element
+    elImg.src = gImgs[gMeme.selectedImgId].url // Send a network req to get that image, define the img src
+    // setTimeout(() => {
+    //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    // }, 10);
+    // When the image ready draw it on the canvas
+    elImg.onload = () => {
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        drawText(gMeme.lines[0], centerX, centerY-(gElCanvas.height/3))
+        drawText(gMeme.lines[1], centerX, centerY+(gElCanvas.height/3))
+
+    }
 }
+
 
 
 
@@ -60,7 +78,6 @@ function onMove(ev) {
 
     
     const pos = getEvPos(ev)
-    console.log('pos:', pos)
     // Calc the delta , the diff we moved
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y

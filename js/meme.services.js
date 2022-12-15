@@ -4,13 +4,14 @@
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 let gSelctedImg 
 
+
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
         {
             txt: 'I sometimes eat Falafel',
-            size: 20,
+            size: 40,
             align: 'left',
             fillColor: 'red',
             textColor: 'red',
@@ -18,7 +19,7 @@ var gMeme = {
         },
         {
             txt: 'I eat hello',
-            size: 20,
+            size: 40,
             align: 'left',
             fillColor: 'red',
             textColor: 'red',
@@ -125,40 +126,18 @@ let { lines} = gMeme.lines
 
 let gFillColor = '#FFFFFF'
 let gBorderColor = '#bdf524'
-let gFontSize = 40
 
 
-// function getMeme() {
-//      drawImg()
-     
-// }
 
-
-function getMeme() {
-    
-    const elImg = new Image() // Create a new html img element
-    elImg.src = gImgs[gMeme.selectedImgId].url // Send a network req to get that image, define the img src
-    // setTimeout(() => {
-    //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-    // }, 10);
-    // When the image ready draw it on the canvas
-    elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText(gMeme.lines[0], 250, 50)
-        drawText(gMeme.lines[1], 250, 350)
-
-    }
-}
 
 
 
 function drawText(line, x, y) {
-    console.log('line:',line )
     const text = line.txt
     gCtx.lineWidth = 2
     gCtx.strokeStyle = line.fillColor
     gCtx.fillStyle = line.textColor
-    gCtx.font = `${gFontSize}px arial`;
+    gCtx.font = `${line.size}px arial`;
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
@@ -192,6 +171,18 @@ function setLineTxColors(color,key) {
    
 }
 
+
+function setFontSize(name){
+    const memeToChange = gMeme.lines.find(line => line.isFocus)
+    console.log('memeToChange:',memeToChange )
+    if(name === 'minus'){
+        memeToChange.size--
+    }else{
+        memeToChange.size++
+    }
+}
+
+
 function setSelectedLineIdx(id){
     if(gMeme.selectedLineIdx === gMeme.lines.length - 1 ){
         gMeme.selectedLineIdx = 0
@@ -208,4 +199,10 @@ function setSelectedLineIdx(id){
 function setFocusState(idx){
     gMeme.lines.forEach(line => line.isFocus =false)
     gMeme.lines[idx].isFocus = true
+}
+
+
+function getCenter(canvas){
+    const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+    return center
 }

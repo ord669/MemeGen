@@ -17,7 +17,7 @@
                 <nav>
                     <ul class="clean-list">
                         <li><a onclick="toggleDisplay(event,name)" href="#" name="memes" class="active">Memes</a></li>
-                        <li><a onclick="toggleDisplay(event,name)" href="#" name="gallery">Gallety</a></li>
+                        <li><a onclick="toggleDisplay(event,name)" href="#" name="gallery">Gallery</a></li>
                         <li><a onclick="toggleDisplay(event,name)" href="#" name="about">About</a></li>
                     </ul>
                 </nav>
@@ -25,7 +25,7 @@
             </div>
         </header>
         
-        <div class="search">
+        <div class="search display">
 
             <input type="text" placeholder="search">
         </div>
@@ -33,7 +33,7 @@
 
 
 
-        <section class="gallery"  >
+        <section class="gallery display"  >
 
 
         </section>
@@ -41,7 +41,7 @@
 
 
 
-        <section class="editor display">
+        <section class="editor ">
             <div class="canvas-container">
                 <a onclick="toggleDisplay(event,name)" href="#" name="about">← Back to Gallery</a>
 
@@ -50,16 +50,27 @@
             
             <div class="control-box">
                 <h3>Edit Text Lines</h3>
-                <button onclick="onSwitchLine(name)">Switch Line</button>
+                <div class="control-box-text">
+                    <button onclick="onFlexable()">I am flexable</button>
+                    <button onclick="onSwitchLine(name)">Switch Line</button>
+                    
+                    <button onclick="onFontSizeChange(name)" name="minus">-</button>
+                    <button onclick="onFontSizeChange(name)" name="plus">+</button>
+                    <div class="control-box-text-fill-color">
+                        Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
+                        value="#bdf524" />
+                    </div>
+                    <div class="control-box-text-border-color">
+                        
+                    </div>
+                    Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
+                    
+                    <div class="control-box-text-text-erea">
+                        <input type="text" onkeyup="onTextInput(this.value)">
+                    </div>
+                </div>
 
-                <button onclick="onFontSizeChange(name)" name="minus">-</button>
-                <button onclick="onFontSizeChange(name)" name="plus">+</button>
-                Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
-               
-                Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
-                    value="#bdf524" />
-    
-                <input type="text" onkeyup="onTextInput(this.value)">
+                <div class="emoji">emoji</div>
 
             </div>
         </section>
