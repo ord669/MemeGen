@@ -40,3 +40,10 @@
 }
 
 
+.meme-card{
+    position: relative;
+}
+
+.meme-card button{
+    position: absolute;
+}

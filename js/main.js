@@ -1,6 +1,5 @@
 'use strict'
 
-const STORAGE_MEME_KEY = 'savedMemes'
 
 function onInit(){
     
@@ -20,9 +19,11 @@ function onColorPick(ev, name) {
 }
 
 function onFontSizeChange(name){
-    console.log('clickes=d:', 'clickes')
-    setFontSize(name)
-   
+    if(name === 'minus'){
+        gFontSize--
+    }else{
+        gFontSize++
+    }
     renderMeme()
 }
 
@@ -43,15 +44,12 @@ function toggleDisplay(ev,pressedOn){
         case 'memes':
             document.querySelector('.gallery').classList.add('display')
             document.querySelector('.editor').classList.add('display')
-            document.querySelector('.meme-gallery').classList.remove('display')
-            renderMemeGallery()
             break
 
         case 'about':
             document.querySelector('.gallery').classList.add('display')
             document.querySelector('.search').classList.add('display')
             document.querySelector('.editor').classList.remove('display')
-            onInitMeme()
 
 
 
@@ -65,20 +63,26 @@ function toggleDisplay(ev,pressedOn){
 }
 
 
+
 function onFlexable(){
-    // console.log(' getRandomInt(0,gImgs):',  getRandomInt(1,gImgs.length+1))
-    gMeme.selectedImgId = getRandomInt(1,gImgs.length+1)
+    console.log('randomText:', randomText)
+    gMeme.selectedImgId = getRandomInt(0,gImgs.length)
+    gMeme.lines.forEach(line => line.size = getRandomInt(50,100) )
+    gMeme.lines.forEach(line =>line.txt = randomText[getRandomInt(0,randomText.length)] )
+    gMeme.lines.forEach(line =>line.fillColor = getRandomColor() )
+    gMeme.lines.forEach(line =>line.textColor = getRandomColor() )
+
     renderMeme()
 }
 
+
+
 function onSaveMeme(){
-    var image = gElCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-    gSavedMemes.push(image)
-
-    saveToStorage(STORAGE_MEME_KEY, gSavedMemes)
-
+     setMemeToSave()
+  console.log('gSavedMemes:',gSavedMemes )
+  const currMeme = {...gMeme}
+    gSavedMemes.push(currMeme)
+    saveToStorage(STORAGE_KEY, gSavedMemes)
+    renderMemeGallery()
+    renderMeme()
 }
-
-
-
-

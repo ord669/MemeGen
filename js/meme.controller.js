@@ -8,20 +8,19 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
 function onInitMeme() {
-    if(loadFromStorage(STORAGE_MEME_KEY).length > 0) renderMemeGallery()
+    renderMemeGallery()
+    getStings()
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    resizeCanvas()
     //Calc the center of the canvas
-
+    const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     //Create the circle in the center
     // createCircle(center)
 
     addListeners()
     // renderCanvas()
     renderMeme()
-    renderGallery()
 
 }
 
@@ -35,28 +34,16 @@ function renderCanvas() {
 }
 
 
-
-
-
-function renderMeme() {
-    const {x : centerX , y : centerY} = getCenter(gElCanvas)
-    
-   
-
-    const elImg = new Image() // Create a new html img element
-    elImg.src = gImgs[gMeme.selectedImgId].url // Send a network req to get that image, define the img src
-    // setTimeout(() => {
-    //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-    // }, 10);
-    // When the image ready draw it on the canvas
-    elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText(gMeme.lines[0], centerX, centerY-(gElCanvas.height/3))
-        drawText(gMeme.lines[1], centerX, centerY+(gElCanvas.height/3))
-
+function renderMeme(){
+    // getMeme()
+    drawImg()
+    drawImg().onload = () => {
+        gMeme.lines.forEach(line => {
+            drawText(line, line.x, line.y)
+        })
     }
-}
 
+}
 
 
 
@@ -76,10 +63,10 @@ function onMove(ev) {
     // const { isDrag } = getCircle()
 
     // if (!isDrag) return
-    renderMeme()
 
     
     const pos = getEvPos(ev)
+    console.log('pos:', pos)
     // Calc the delta , the diff we moved
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
@@ -134,10 +121,50 @@ function onTextInput(ev){
 
 
 
+
+
+              
+
+function getFont(fontSize,fontBase) {
+
+    var ratio = fontSize / fontBase;   // calc ratio
+    var size = gElCanvas.width * ratio;   // get font size based on current width
+    return (size|0) + 'px sans-serif'; // set font
+}
+
+
+
+function setMemeToSave(){
+
+    var image = gElCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+    gMeme.img = image
+    gMeme.id = makeId(length = 6)
+
+}
+
+
 function renderMemeGallery(){
-    const strHTML = gSavedMemes.map(img => `
-    <img class="photo"  src="${img}" alt="">
+    
+    const strHTML = gSavedMemes.map(meme => `
+    <div class="meme-card"><button onclick="onDeleteMeme('${meme.id}')" class="delete-btn">X</button>
+    <img class="photo" onclick="onMemeSelect('${meme.id}')" src="${meme.img}" alt="">
+    </div>
     `)
-    console.log('strHTML:',strHTML )
     document.querySelector('.meme-gallery').innerHTML = strHTML.join('')
+}
+
+
+
+function onMemeSelect(id){
+    console.log('id:',id )
+    getMemeFromSaved(id)
+    renderMeme()
+}
+
+
+function onDeleteMeme(id){
+console.log('id:', id)
+    setDeleteMeme(id)
+    renderMemeGallery()
+
 }
