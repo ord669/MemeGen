@@ -1,5 +1,6 @@
 'use strict'
 
+const STORAGE_MEME_KEY = 'savedMemes'
 
 function onInit(){
     
@@ -42,6 +43,8 @@ function toggleDisplay(ev,pressedOn){
         case 'memes':
             document.querySelector('.gallery').classList.add('display')
             document.querySelector('.editor').classList.add('display')
+            document.querySelector('.meme-gallery').classList.remove('display')
+            renderMemeGallery()
             break
 
         case 'about':
@@ -67,3 +70,15 @@ function onFlexable(){
     gMeme.selectedImgId = getRandomInt(1,gImgs.length+1)
     renderMeme()
 }
+
+function onSaveMeme(){
+    var image = gElCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+    gSavedMemes.push(image)
+
+    saveToStorage(STORAGE_MEME_KEY, gSavedMemes)
+
+}
+
+
+
+

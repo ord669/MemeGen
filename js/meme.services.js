@@ -3,7 +3,7 @@
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 let gSelctedImg 
-
+const gSavedMemes = loadFromStorage(STORAGE_MEME_KEY) || []
 
 var gMeme = {
     selectedImgId: 5,
@@ -202,7 +202,7 @@ function setFocusState(idx){
 }
 
 
-function getCenter(canvas){
+function getCenter(){
     const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     return center
 }

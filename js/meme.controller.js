@@ -8,6 +8,7 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
 function onInitMeme() {
+    if(loadFromStorage(STORAGE_MEME_KEY).length > 0) renderMemeGallery()
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
@@ -20,6 +21,7 @@ function onInitMeme() {
     addListeners()
     // renderCanvas()
     renderMeme()
+    renderGallery()
 
 }
 
@@ -130,3 +132,12 @@ function onTextInput(ev){
 
 }
 
+
+
+function renderMemeGallery(){
+    const strHTML = gSavedMemes.map(img => `
+    <img class="photo"  src="${img}" alt="">
+    `)
+    console.log('strHTML:',strHTML )
+    document.querySelector('.meme-gallery').innerHTML = strHTML.join('')
+}
