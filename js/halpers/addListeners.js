@@ -8,7 +8,6 @@ function addListeners() {
     //Listen for resize ev
     window.addEventListener('resize', () => {
         resizeCanvas()
-        // renderCanvas()
 
     })
 }

@@ -4,7 +4,7 @@
 function onInit(){
     onInitGallery()
     onInitMeme()
-
+    renderDataList()
 }
 
 
@@ -70,5 +70,3 @@ function onFlexable(){
 
     renderMeme()
 }
-
-

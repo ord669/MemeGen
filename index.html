@@ -24,17 +24,21 @@
 
             </div>
         </header>
-        
-        <div class="search">
 
-            <input type="text" placeholder="search">
+        <div class="search">
+            <input onchange="onDataList(this.value)" list="browsers" placeholder="search" id="myBrowser"
+                name="myBrowser">
+            <datalist id="browsers">
+
+
+            </datalist>
         </div>
 
         <button onclick="onFlexable()">I am flexable</button>
 
 
 
-        <section class="gallery"  >
+        <section class="gallery">
 
 
         </section>
@@ -54,30 +58,35 @@
 
                 <canvas width="400" height="400" style="outline: 1px solid green"></canvas>
             </div>
-            
+
             <div class="control-box">
                 <h3>Edit Text Lines</h3>
                 <div class="control-box-text">
+
+                    <button onclick="onAddLine()">Add Line</button>
                     <button onclick="onSaveMeme()">Save</button>
                     <button onclick="onSwitchLine(name)">Switch Line</button>
-                    
+
                     <button onclick="onFontSizeChange(name)" name="minus">-</button>
                     <button onclick="onFontSizeChange(name)" name="plus">+</button>
                     <div class="control-box-text-fill-color">
                         Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
-                        value="#bdf524" />
+                            value="#bdf524" />
                     </div>
                     <div class="control-box-text-border-color">
-                        
+
                     </div>
-                    Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
-                    
+                    Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="fillColor"
+                        value="#FFFFFF" />
+
                     <div class="control-box-text-text-erea">
                         <input type="text" onkeyup="onTextInput(this.value)">
                     </div>
                 </div>
-
-                <div class="emoji">emoji</div>
+                <div class="emojis-container">
+                    <div class="emojis">
+                    </div>
+                </div>
 
             </div>
         </section>

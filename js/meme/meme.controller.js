@@ -8,6 +8,7 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
 function onInitMeme() {
+    renderEmojiGallery()
     renderMemeGallery()
     getStings()
     gElCanvas = document.querySelector('canvas')
@@ -50,19 +51,26 @@ function renderMeme(){
 
 
 function onDown(ev) {
-    // Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
-    // if (!isCircleClicked(pos)) return
-    // setCircleDrag(true)
+    // pick line
+    findClick(pos)
+
+    // Get the ev pos from mouse or touch
+   
+    if (!isClicked(pos)) return
+    console.log('stopHere:', 'stopHere')
+    setLineDrag(true)
+
     //Save the pos we start from
     gStartPos = pos
+    console.log('here:', 'here')
     document.body.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
-    // const { isDrag } = getCircle()
+    const { isDrag } = gMeme.lines.find(line => line.isFocus)
 
-    // if (!isDrag) return
+    if (!isDrag) return
 
     
     const pos = getEvPos(ev)
@@ -70,15 +78,17 @@ function onMove(ev) {
     // Calc the delta , the diff we moved
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
-    // moveCircle(dx, dy)
+    moveLine(dx, dy)
     // Save the last pos , we remember where we`ve been and move accordingly
     gStartPos = pos
     // The canvas is render again after every move
-    // renderCanvas()
+    renderMeme()
 }
 
 function onUp() {
     // setCircleDrag(false)
+    setLineDrag(false)
+
     document.body.style.cursor = 'grab'
 }
 
@@ -161,4 +171,45 @@ console.log('id:', id)
     setDeleteMeme(id)
     renderMemeGallery()
 
+}
+
+
+function renderEmojiGallery(){
+    const strHTML = emojis.map(emoji => `
+    <div class="emoji" onclick="onEmojiSelect('${emoji.name}')">${emoji.emoji}
+    </div>
+    `)
+    document.querySelector('.emojis').innerHTML = strHTML.join('')
+}
+
+
+
+function onEmojiSelect(emoji){
+    getEmojiSelect(emoji)
+    renderMeme()
+}
+
+
+function onAddLine(){
+    addLine()
+    renderMeme()
+
+}
+
+
+
+
+
+
+function isClicked(clickedPos) {
+
+    const line = gMeme.lines.find(line => line.isFocus)
+    console.log('lineos:',line )
+    const { x,y ,size} = line
+
+    // Calc the distance between two dots
+    const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
+    //If its smaller then the radius of the circle we are inside
+
+    return distance <= size
 }
