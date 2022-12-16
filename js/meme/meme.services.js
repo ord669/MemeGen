@@ -333,3 +333,12 @@ function clickAndChoose(clickedPos) {
 }
 
 
+
+
+
+
+function removeLine(){
+    const idx = gMeme.lines.findIndex(line => line.isFocus)
+    gMeme.lines.splice(idx, 1)
+
+}

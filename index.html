@@ -17,7 +17,7 @@
                 <nav>
                     <ul class="clean-list">
                         <li><a onclick="toggleDisplay(event,name)" href="#" name="memes" class="active">Memes</a></li>
-                        <li><a onclick="toggleDisplay(event,name)" href="#" name="gallery">Gallety</a></li>
+                        <li><a onclick="toggleDisplay(event,name)" href="#" name="gallery">Gallery</a></li>
                         <li><a onclick="toggleDisplay(event,name)" href="#" name="about">About</a></li>
                     </ul>
                 </nav>
@@ -63,6 +63,7 @@
                 <h3>Edit Text Lines</h3>
                 <div class="control-box-text">
 
+                    <button onclick="onDeleteLine()">Delete</button>
                     <button onclick="onAddLine()">Add Line</button>
                     <button onclick="onSaveMeme()">Save</button>
                     <button onclick="onSwitchLine(name)">Switch Line</button>

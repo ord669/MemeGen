@@ -213,3 +213,13 @@ function isClicked(clickedPos) {
 
     return distance <= size
 }
+
+
+
+
+
+
+function onDeleteLine() {
+    removeLine()
+    renderMeme()
+}
