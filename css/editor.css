@@ -12,10 +12,14 @@
     padding-block-start: 24px;
     padding-block-end: 24px;
     width: 100%;
-  
-    display: flex;
-    flex-direction: column;
-    height: 70vh;
+ 
+}
+canvas {
+    display: block;
+    margin: 0 auto;
+    outline: 1px solid black;
+    background-color: white;
+    border-radius: 15px;
 }
 
 .editor a{

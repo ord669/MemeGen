@@ -96,7 +96,7 @@ function onUp() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
+    // gElCanvas.height = elContainer.offsetHeight -20
     renderMeme()
 }
 

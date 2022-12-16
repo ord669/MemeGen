@@ -12,42 +12,7 @@ var gMeme = {
     selectedLineIdx: 0,
     img: '',
     lines: [
-        {
-            id: makeId(length = 6),
-            txt: '',
-            size: 40,
-            align: 'left',
-            fillColor: 'red',
-            textColor: 'red',
-            isFocus: true,
-            isDrag: false,
-            x: 250,
-            y: 50,
-            width:0,
-            hight:0,
-            borderleft:0,
-            borderRight:0,
-            borderTop:0,
-            borderBottom:0
-        },
-        {
-            id: makeId(length = 6),
-            txt: 'I eat hello',
-            size: 20,
-            align: 'left',
-            fillColor: 'red',
-            textColor: 'red',
-            isFocus: false,
-            isDrag: false,
-            x: 250,
-            y: 350,
-            width:0,
-            hight:0,
-            borderleft:0,
-            borderRight:0,
-            borderTop:0,
-            borderBottom:0
-        }
+
     ]
 }
 
@@ -139,14 +104,14 @@ function drawText(line, x, y) {
     const metrics = gCtx.measureText(text);
     line.width = metrics.width
     line.hight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
-    line.borderTop = y - metrics.actualBoundingBoxAscent 
+    line.borderTop = y - metrics.actualBoundingBoxAscent
     line.borderBottom = y + line.hight
     line.borderLeft = x - metrics.actualBoundingBoxLeft - 5
-    line.borderRight = x +line.width +10
+    line.borderRight = x + line.width + 10
 
-     if(text.length>0) drawRect(x - metrics.actualBoundingBoxLeft - 5, y - metrics.actualBoundingBoxAscent -5 ,line.width +10,line.hight+10)
-     
-    
+    if (text.length > 0 && line.isFocus) drawRect(x - metrics.actualBoundingBoxLeft - 5, y - metrics.actualBoundingBoxAscent - 5, line.width + 10, line.hight + 10)
+
+
     console.log('line:', line)
     gCtx.fillText(text, x, y) // Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(text, x, y) // Draws (strokes) a given text at the given (x, y) position.
@@ -202,7 +167,6 @@ function setFocusState(idx) {
 function getMemeFromSaved(id) {
 
     const memeToLoad = gSavedMemes.find(meme => meme.id === id)
-    memeToLoad.id = makeId(length = 6)
 
     gMeme = { ...memeToLoad }
     gMeme.id = makeId(length = 6)
@@ -247,23 +211,23 @@ function getEmojiSelect(emoji) {
     const emojiToAdd = emojis.find(emo => emo.name === emoji)
     const emojiToPush = createLine(emojiToAdd.emoji)
     gMeme.lines.push(emojiToPush)
-    console.log('emojiToPush:',emojiToPush)
+    console.log('emojiToPush:', emojiToPush)
     makeFocus(emojiToPush.id)
-   
+
 }
 
 
-function createLine(txt='new line',x=250,y= 350){
+function createLine(txt = 'new line', x = 250, y = 350) {
     return {
-            id: makeId(length = 6),
-            txt,
-            size: 40,
-            align: 'left',
-            fillColor: 'red',
-            textColor: 'red',
-            isFocus: false,
-            x,
-            y
+        id: makeId(length = 6),
+        txt,
+        size: 40,
+        align: 'left',
+        fillColor: 'red',
+        textColor: 'red',
+        isFocus: false,
+        x,
+        y
 
     }
 }
@@ -273,17 +237,17 @@ function addLine() {
     const newLine = createLine()
     gMeme.lines.push(newLine)
     makeFocus(newLine.id)
-   
-}
-
-function setLineWidth(){
 
 }
 
+function setLineWidth() {
+
+}
 
 
 
-function drawRect(x, y,width,hight) {
+
+function drawRect(x, y, width, hight) {
     // First way - drawing a rect by specifying a patch using the .rect() method,
     // and then filling it with the .fill() method and stroking it with the .stroke() method
     gCtx.beginPath()
@@ -310,7 +274,7 @@ function setLineDrag(isDrag) {
 
 
 
-function moveLine(dx, dy){
+function moveLine(dx, dy) {
     console.log('gMeme.lines.find(line => line.isFocus):', gMeme.lines.find(line => line.isFocus))
     gMeme.lines.find(line => line.isFocus).x += dx
     gMeme.lines.find(line => line.isFocus).y += dy
@@ -318,49 +282,46 @@ function moveLine(dx, dy){
 
 
 
-function makeFocus(id){
-    if(!id) return
-    gMeme.lines.forEach(line=>line.isFocus = false)
-    const focusedLine = gMeme.lines.find(line => line.id ===id)
-    if(focusedLine)focusedLine.isFocus = true
-    
+function makeFocus(id) {
+    if (!id) return
+    gMeme.lines.forEach(line => line.isFocus = false)
+    const focusedLine = gMeme.lines.find(line => line.id === id)
+    if (focusedLine) focusedLine.isFocus = true
+
 }
 
 
 
-function findClick(clickedPos){
-    const {x,y} = clickedPos
+function findClick(clickedPos) {
+    const { x, y } = clickedPos
 
-    console.log('clickedPos:', clickedPos)
     console.log('clickedPos.x:', clickedPos.x)
     console.log('clickedPos.y:', clickedPos.y)
     console.log('x:', x)
     console.log('y:', y)
-   console.log(' gElCanvas.width:',  gElCanvas.width)
 
-   
-    const lineFind = gMeme.lines.find(line => 
-        line.borderleft <x &&
-        x<line.borderRight &&
-        y< line.borderBottom  &&
-        y>line.borderTop
 
-        )
-    console.log('lineFind:',lineFind )
-    makeFocus(lineFind.id)
+    const lineFind = gMeme.lines.find(line =>
+        x > line.borderLeft  &&
+        x < line.borderRight  &&
+        y < line.borderBottom &&
+        y > line.borderTop
+    )
+    console.log('lineFind:', lineFind)
+    if (lineFind) makeFocus(lineFind.id)
     // if(x - (width/2)<x &&x < x+(width/2)){
     //     
     // }
-       
+
 }
 
 
-function clickAndChoose(clickedPos){
+function clickAndChoose(clickedPos) {
     const lineFind = gMeme.lines.find(line => {
-        const { x,y ,size} = line
+        const { x, y, size } = line
         const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
         return distance <= size
-        
+
     })
     console.log('lineFind:', lineFind)
     makeFocus(lineFind.id)
@@ -370,3 +331,5 @@ function clickAndChoose(clickedPos){
     //If its smaller then the radius of the circle we are inside
 
 }
+
+

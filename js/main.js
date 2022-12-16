@@ -27,6 +27,7 @@ function onFontSizeChange(name){
 function onSwitchLine(){
     const idx =  setSelectedLineIdx()
     setFocusState(idx)
+    renderMeme()
     
     
 }
