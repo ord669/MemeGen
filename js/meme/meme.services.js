@@ -342,3 +342,4 @@ function removeLine(){
     gMeme.lines.splice(idx, 1)
 
 }
+

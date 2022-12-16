@@ -63,6 +63,11 @@
                 <h3>Edit Text Lines</h3>
                 <div class="control-box-text">
 
+                    <button>
+                        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+                    </button>
+
+                    <button onclick="onUploadImg()">Share</button>
                     <button onclick="onDeleteLine()">Delete</button>
                     <button onclick="onAddLine()">Add Line</button>
                     <button onclick="onSaveMeme()">Save</button>
@@ -112,6 +117,7 @@
     <script src="js/meme/meme.controller.js"></script>
     <script src="js/gallery/gallery.controller.js"></script>
     <script src="js/gallery/gallery.services.js"></script>
+    <script src="js/halpers/upload.service.js"></script>
 
 
 

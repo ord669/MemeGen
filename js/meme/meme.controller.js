@@ -223,3 +223,38 @@ function onDeleteLine() {
     removeLine()
     renderMeme()
 }
+
+
+
+
+
+
+//* upload to facebook
+
+function onUploadImg() {
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        // Encode the instance of certain characters in the url
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+    // Send the image to the server
+    doUploadImg(imgDataUrl, onSuccess)
+}
+
+
+
+//* download
+
+
+function downloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+    elLink.href = imgContent
+}
+
+
+
+
+
