@@ -125,22 +125,16 @@ function onTextInput(ev){
 
               
 
-function getFont(fontSize,fontBase) {
 
-    var ratio = fontSize / fontBase;   // calc ratio
-    var size = gElCanvas.width * ratio;   // get font size based on current width
-    return (size|0) + 'px sans-serif'; // set font
+
+
+function onSaveMeme(){
+    setMemeToSave()
+   
+   renderMemeGallery()
+   renderMeme()
 }
 
-
-
-function setMemeToSave(){
-
-    var image = gElCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-    gMeme.img = image
-    gMeme.id = makeId(length = 6)
-
-}
 
 
 function renderMemeGallery(){

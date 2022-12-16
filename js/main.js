@@ -2,7 +2,6 @@
 
 
 function onInit(){
-    
     onInitGallery()
     onInitMeme()
 
@@ -19,11 +18,8 @@ function onColorPick(ev, name) {
 }
 
 function onFontSizeChange(name){
-    if(name === 'minus'){
-        gFontSize--
-    }else{
-        gFontSize++
-    }
+    setFontSize(name)
+ 
     renderMeme()
 }
 
@@ -76,13 +72,3 @@ function onFlexable(){
 }
 
 
-
-function onSaveMeme(){
-     setMemeToSave()
-  console.log('gSavedMemes:',gSavedMemes )
-  const currMeme = {...gMeme}
-    gSavedMemes.push(currMeme)
-    saveToStorage(STORAGE_KEY, gSavedMemes)
-    renderMemeGallery()
-    renderMeme()
-}
