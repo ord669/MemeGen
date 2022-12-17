@@ -1,12 +1,14 @@
 
 header{
+    
     background: #FFFFFF;
-    height: 50px ;
+    height: 70px ;
     
 
 
 }
 .header-container{
+    padding: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,7 +18,7 @@ header{
 ul{
     place-content:center end;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
     grid-template-rows: 1fr;
     gap: 50px;
     place-content: center center;

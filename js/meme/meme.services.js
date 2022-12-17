@@ -119,6 +119,7 @@ function drawText(line, x, y) {
 
 
 function setLineTxt(text) {
+    console.log('text:',text)
     gMeme.lines.find(line => line.isFocus).txt = text
 
 }
@@ -186,7 +187,6 @@ function setDeleteMeme(id) {
 
 
 function setMemeToSave() {
-
     var image = gElCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
     gMeme.img = image
     gMeme.id = makeId(length = 6)
@@ -293,7 +293,9 @@ function makeFocus(id) {
     if (!id) return
     gMeme.lines.forEach(line => line.isFocus = false)
     const focusedLine = gMeme.lines.find(line => line.id === id)
-    if (focusedLine) focusedLine.isFocus = true
+    focusedLine.isFocus = true
+    renderMeme()
+
 
 }
 
@@ -319,6 +321,8 @@ function findClick(clickedPos) {
     if (lineFind){
         isClicked = true
         makeFocus(lineFind.id)
+        inputLine=''
+
     } 
     // if(x - (width/2)<x &&x < x+(width/2)){
     //     
@@ -327,21 +331,21 @@ function findClick(clickedPos) {
 }
 
 
-function clickAndChoose(clickedPos) {
-    const lineFind = gMeme.lines.find(line => {
-        const { x, y, size } = line
-        const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
-        return distance <= size
+// function clickAndChoose(clickedPos) {
+//     const lineFind = gMeme.lines.find(line => {
+//         const { x, y, size } = line
+//         const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
+//         return distance <= size
 
-    })
-    console.log('lineFind:', lineFind)
-    makeFocus(lineFind.id)
-    console.log('lineFind:', lineFind)
+//     })
+//     console.log('lineFind:', lineFind)
+//     makeFocus(lineFind.id)
+//     console.log('lineFind:', lineFind)
 
-    // Calc the distance between two dots
-    //If its smaller then the radius of the circle we are inside
+//     // Calc the distance between two dots
+//     //If its smaller then the radius of the circle we are inside
 
-}
+// }
 
 
 
@@ -354,3 +358,36 @@ function removeLine(){
 
 }
 
+
+
+//*! inputline
+var inputLine =''
+
+
+function setTextInputInline(keypress,isBack){
+    if(isBack){
+        console.log('in:', 'in')
+        console.log('inputLine:', inputLine)
+        inputLine = inputLine.substring(0, inputLine.length - 1)
+        console.log('inputLine:', inputLine)
+        onTextInput(inputLine)
+    }else{
+        inputLine += `${keypress}`
+        console.log('inputLine:',inputLine )
+        onTextInput(inputLine)
+
+    }
+
+}
+
+
+
+function cancelFocus() {
+
+    gMeme.lines.forEach(line => line.isFocus = false)
+
+    renderMeme()
+    
+
+
+}

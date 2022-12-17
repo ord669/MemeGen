@@ -11,83 +11,87 @@
 
 <body onload="onInit()">
     <div class="main-layout">
-        <header class="full main-layout">
+        <div class="main-screen full" onclick="toggleMenu()"></div>
+
+        <header class="main-header full main-layout ">
             <div class="header-container">
                 <div class="logo"><img src="images/LOGO/meme_logo.png" alt=""></div>
-                <nav>
-                    <ul class="clean-list">
+                <nav class="main-nav">
+                    <ul class="flex clean-list nav-list">
                         <li><a onclick="toggleDisplay(event,name)" href="#" name="memes" class="active">Memes</a></li>
                         <li><a onclick="toggleDisplay(event,name)" href="#" name="gallery">Gallery</a></li>
-                        <li><a onclick="toggleDisplay(event,name)" href="#" name="about">About</a></li>
                     </ul>
                 </nav>
+                <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
+
 
             </div>
         </header>
+        <div class="seacrh-container">
+            <div class="search">
+                <input onchange="onDataList(this.value)" list="browsers" placeholder="search" id="myBrowser"
+                    name="myBrowser">
+                <datalist id="browsers">
 
-        <div class="search">
-            <input onchange="onDataList(this.value)" list="browsers" placeholder="search" id="myBrowser"
-                name="myBrowser">
-            <datalist id="browsers">
 
+                </datalist>
+            </div>
+            <div class="search-words">
 
-            </datalist>
+            </div>
+
         </div>
-
-        <button onclick="onFlexable()">I am flexable</button>
+        <div class="flex-back">
+            <a class="button" onclick="toggleDisplay(false,'gallery')" href="#" name="about">← Back to Gallery</a>
+            <button class="button" onclick="onFlexable()">I am flexable</button>
+        </div>
 
 
 
         <section class="gallery">
-
-
         </section>
 
-        <section class="meme-gallery">
-
-
+        <section class="meme-gallery display">
         </section>
 
 
 
 
 
-        <a onclick="toggleDisplay(event,name)" href="#" name="about">← Back to Gallery</a>
-        <section class="editor ">
+        <section class="editor display">
             <div class="canvas-container">
 
-                <canvas width="700" height="700" style="outline: 1px solid green"></canvas>
+                <canvas  width="700" height="700" style="outline: 1px solid green">
+                </canvas>
             </div>
 
             <div class="control-box">
                 <h3>Edit Text Lines</h3>
                 <div class="control-box-text">
-
-                    <button>
-                        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
-                    </button>
-
-                    <button onclick="onUploadImg()">Share</button>
-                    <button onclick="onDeleteLine()">Delete</button>
-                    <button onclick="onAddLine()">Add Line</button>
-                    <button onclick="onSaveMeme()">Save</button>
-                    <button onclick="onSwitchLine(name)">Switch Line</button>
-
-                    <button onclick="onFontSizeChange(name)" name="minus">-</button>
-                    <button onclick="onFontSizeChange(name)" name="plus">+</button>
-                    <div class="control-box-text-fill-color">
-                        Fill Color : <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
-                            value="#bdf524" />
-                    </div>
-                    <div class="control-box-text-border-color">
+                    <div class="editor-special-btns">
+                        <button class="button" onclick="onSaveMeme()"><img src="./images/editorImg/save.png" alt=""></button>
+                        <a class="button" href="#"  onclick="downloadImg(this)" download="my-img.jpg">Download</a>
+                        <button class="button" onclick="onUploadImg()"><img src="./images/editorImg/share.png" alt=""></button>
 
                     </div>
-                    Border Color: <input onchange="onColorPick(this.value,name)" type="color" name="fillColor"
-                        value="#FFFFFF" />
+                    
+                    <div class="editor-text-control">
+                        <button  onclick="onDeleteLine()"><img src="./images/editorImg/delete.png" alt=""></button>
+                        
+                        <button  onclick="onAddLine()"><img src="./images/editorImg/add.png" alt=""></button>
+                            <button  onclick="onFontSizeChange(name)" name="minus"><img src="./images/editorImg/minus.png" alt=""></button>
+                            <button  onclick="onFontSizeChange(name)" name="plus"><img src="./images/editorImg/plus.png" alt=""></button>
+                        </div>
 
-                    <div class="control-box-text-text-erea">
-                        <input type="text" onkeyup="onTextInput(this.value)">
-                    </div>
+                        <div class="control-box-colors">
+                            <!-- <input type="text" onkeyup="onTextInput(this.value)"> -->
+                            <h3>Fill</h3>    
+                            <input onchange="onColorPick(this.value,name)" type="color" name="borderColor" value="#bdf524" />
+    
+                            <h3>Border</h3>
+                            <input class="fill-color-img" onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
+    
+                        </div>
                 </div>
                 <div class="emojis-container">
                     <div class="emojis">

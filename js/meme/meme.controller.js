@@ -35,7 +35,7 @@ function renderCanvas() {
 }
 
 
-function renderMeme(){
+function renderMeme() {
     // getMeme()
     drawImg()
     drawImg().onload = () => {
@@ -56,7 +56,7 @@ function onDown(ev) {
     findClick(pos)
 
     // Get the ev pos from mouse or touch
-   
+
     if (!findClick(pos)) return
     console.log('stopHere:', 'stopHere')
     setLineDrag(true)
@@ -68,11 +68,12 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
+    if (!gMeme.lines.find(line => line.isFocus)) return
     const { isDrag } = gMeme.lines.find(line => line.isFocus)
 
     if (!isDrag) return
 
-    
+
     const pos = getEvPos(ev)
     console.log('pos:', pos)
     // Calc the delta , the diff we moved
@@ -96,7 +97,7 @@ function onUp() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
-    // gElCanvas.height = elContainer.offsetHeight -20
+    // gElCanvas.height = elContainer.offsetHeight
     renderMeme()
 }
 
@@ -123,34 +124,27 @@ function getEvPos(ev) {
     return pos
 }
 
-function onTextInput(ev){
+function onTextInput(ev) {
     setLineTxt(ev)
     renderMeme()
 
 }
+function onSaveMeme() {
 
-
-
-
-
-              
-
-
-
-
-function onSaveMeme(){
     setMemeToSave()
-   
-   renderMemeGallery()
-   renderMeme()
+
+    
+    renderMemeGallery()
+    renderMeme()
+    toggleDisplay(false, 'memes')
 }
 
 
 
-function renderMemeGallery(){
-    
+function renderMemeGallery() {
+
     const strHTML = gSavedMemes.map(meme => `
-    <div class="meme-card"><button onclick="onDeleteMeme('${meme.id}')" class="delete-btn">X</button>
+    <div class="meme-card"><button class="button" onclick="onDeleteMeme('${meme.id}')" class="delete-btn">X</button>
     <img class="photo" onclick="onMemeSelect('${meme.id}')" src="${meme.img}" alt="">
     </div>
     `)
@@ -159,22 +153,23 @@ function renderMemeGallery(){
 
 
 
-function onMemeSelect(id){
-    console.log('id:',id )
+function onMemeSelect(id) {
+    toggleDisplay(false, 'editor')
+    console.log('id:', id)
     getMemeFromSaved(id)
     renderMeme()
 }
 
 
-function onDeleteMeme(id){
-console.log('id:', id)
+function onDeleteMeme(id) {
+    console.log('id:', id)
     setDeleteMeme(id)
     renderMemeGallery()
 
 }
 
 
-function renderEmojiGallery(){
+function renderEmojiGallery() {
     const strHTML = emojis.map(emoji => `
     <div class="emoji" onclick="onEmojiSelect('${emoji.name}')">${emoji.emoji}
     </div>
@@ -184,13 +179,13 @@ function renderEmojiGallery(){
 
 
 
-function onEmojiSelect(emoji){
+function onEmojiSelect(emoji) {
     getEmojiSelect(emoji)
     renderMeme()
 }
 
 
-function onAddLine(){
+function onAddLine() {
     addLine()
     renderMeme()
 
@@ -201,18 +196,18 @@ function onAddLine(){
 
 
 
-function isClicked(clickedPos) {
+// function isClicked(clickedPos) {
 
-    const line = gMeme.lines.find(line => line.isFocus)
-    console.log('lineos:',line )
-    const { x,y ,size} = line
+//     const line = gMeme.lines.find(line => line.isFocus)
+//     console.log('lineos:', line)
+//     const { x, y, size } = line
 
-    // Calc the distance between two dots
-    const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
-    //If its smaller then the radius of the circle we are inside
+//     // Calc the distance between two dots
+//     const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y) ** 2)
+//     //If its smaller then the radius of the circle we are inside
 
-    return distance <= size
-}
+//     return distance <= size
+// }
 
 
 

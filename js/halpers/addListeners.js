@@ -10,6 +10,17 @@ function addListeners() {
         resizeCanvas()
 
     })
+
+    window.addEventListener("keydown",(e)=>{
+        if(e.key ==='Backspace'){
+            setTextInputInline(e.key,true)
+            
+        }else{
+
+            setTextInputInline(e.key)
+        }
+    });
+
 }
 
 function addMouseListeners() {

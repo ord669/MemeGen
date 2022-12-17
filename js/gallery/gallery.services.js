@@ -1,11 +1,11 @@
 'use strict'
 
-var gKeywordSearchCountMap = { 
-    'funny': 12, 
-    'cat': 16, 
-    'baby': 3, 
-    'hat': 8, 
-    'haim': 4, 
+var gKeywordSearchCountMap = {
+    'funny': 1,
+    'cat': 1,
+    'baby': 1,
+    'hat': 1,
+    'haim': 1,
     'dogs': 1
 }
 
@@ -105,7 +105,8 @@ var gImgs = [
 ];
 
 
-function filterGallery(filterBy){
+function filterGallery(filterBy) {
+    if(!filterBy){renderGallery()}
     const filterGallery = gImgs.filter(img => img.keywords.includes(filterBy))
     return filterGallery
 }
