@@ -64,6 +64,8 @@ function toggleDisplay(ev,pressedOn){
 function onFlexable(){
     console.log('randomText:', randomText)
     gMeme.selectedImgId = getRandomInt(0,gImgs.length)
+    addLine() 
+    addLine() 
     gMeme.lines.forEach(line => line.size = getRandomInt(50,100) )
     gMeme.lines.forEach(line =>line.txt = randomText[getRandomInt(0,randomText.length)] )
     gMeme.lines.forEach(line =>line.fillColor = getRandomColor() )

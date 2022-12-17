@@ -57,7 +57,7 @@ function onDown(ev) {
 
     // Get the ev pos from mouse or touch
    
-    if (!isClicked(pos)) return
+    if (!findClick(pos)) return
     console.log('stopHere:', 'stopHere')
     setLineDrag(true)
 

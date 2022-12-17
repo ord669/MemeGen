@@ -107,7 +107,7 @@ function drawText(line, x, y) {
     line.borderTop = y - metrics.actualBoundingBoxAscent
     line.borderBottom = y + line.hight
     line.borderLeft = x - metrics.actualBoundingBoxLeft - 5
-    line.borderRight = x + line.width + 10
+    line.borderRight = x + line.width /2
 
     if (text.length > 0 && line.isFocus) drawRect(x - metrics.actualBoundingBoxLeft - 5, y - metrics.actualBoundingBoxAscent - 5, line.width + 10, line.hight + 10)
 
@@ -234,7 +234,14 @@ function createLine(txt = 'new line', x = 250, y = 350) {
 
 
 function addLine() {
-    const newLine = createLine()
+    const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+    console.log('center:', center)
+    const x = getRandomInt(center.x, (gElCanvas.width/6))
+    console.log('x:', x)
+    const y =getRandomInt(center.y, (gElCanvas.height/6))
+    console.log('y:', y)
+
+    const newLine = createLine('new line',x,y)
     gMeme.lines.push(newLine)
     makeFocus(newLine.id)
 
@@ -294,7 +301,7 @@ function makeFocus(id) {
 
 function findClick(clickedPos) {
     const { x, y } = clickedPos
-
+    let isClicked = false
     console.log('clickedPos.x:', clickedPos.x)
     console.log('clickedPos.y:', clickedPos.y)
     console.log('x:', x)
@@ -307,12 +314,16 @@ function findClick(clickedPos) {
         y < line.borderBottom &&
         y > line.borderTop
     )
+
     console.log('lineFind:', lineFind)
-    if (lineFind) makeFocus(lineFind.id)
+    if (lineFind){
+        isClicked = true
+        makeFocus(lineFind.id)
+    } 
     // if(x - (width/2)<x &&x < x+(width/2)){
     //     
     // }
-
+    return isClicked
 }
 
 
