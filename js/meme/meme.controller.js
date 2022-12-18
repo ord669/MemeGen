@@ -130,13 +130,14 @@ function onTextInput(ev) {
 
 }
 function onSaveMeme() {
+    cancelFocus()
+    setTimeout(() => {
+        setMemeToSave()
+        renderMemeGallery()
+        renderMeme()
+        toggleDisplay(false, 'memes')
 
-    setMemeToSave()
-
-    
-    renderMemeGallery()
-    renderMeme()
-    toggleDisplay(false, 'memes')
+    }, 100);
 }
 
 

@@ -187,6 +187,7 @@ function setDeleteMeme(id) {
 
 
 function setMemeToSave() {
+
     var image = gElCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
     gMeme.img = image
     gMeme.id = makeId(length = 6)
