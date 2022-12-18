@@ -258,8 +258,13 @@ function onUploadImg() {
 
 
 function downloadImg(elLink) {
-    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
-    elLink.href = imgContent
+
+    cancelFocus()
+    setTimeout(() => {
+        renderMeme()
+        const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+        elLink.href = imgContent
+    }, 100);
 }
 
 
