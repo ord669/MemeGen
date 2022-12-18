@@ -61,7 +61,7 @@
         <section class="editor display">
             <div class="canvas-container">
 
-                <canvas  width="700" height="700" style="outline: 1px solid green">
+                <canvas width="700" height="700" style="outline: 1px solid green">
                 </canvas>
             </div>
 
@@ -69,29 +69,37 @@
                 <h3>Edit Text Lines</h3>
                 <div class="control-box-text">
                     <div class="editor-special-btns">
-                        <button class="button" onclick="onSaveMeme()"><img src="./images/editorImg/save.png" alt=""></button>
-                        <a class="button" href="#"  onclick="downloadImg(this)" download="my-img.jpg">Download</a>
-                        <button class="button" onclick="onUploadImg()"><img src="./images/editorImg/share.png" alt=""></button>
+                        <button class="button" onclick="onSaveMeme()"><img src="./images/editorImg/save.png"
+                                alt=""></button>
+                        <a class="button" href="#" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
+                        <button class="button" onclick="onUploadImg()"><img src="./images/editorImg/share.png"
+                                alt=""></button>
 
                     </div>
-                    
-                    <div class="editor-text-control">
-                        <button  onclick="onDeleteLine()"><img src="./images/editorImg/delete.png" alt=""></button>
-                        
-                        <button  onclick="onAddLine()"><img src="./images/editorImg/add.png" alt=""></button>
-                            <button  onclick="onFontSizeChange(name)" name="minus"><img src="./images/editorImg/minus.png" alt=""></button>
-                            <button  onclick="onFontSizeChange(name)" name="plus"><img src="./images/editorImg/plus.png" alt=""></button>
-                        </div>
 
-                        <div class="control-box-colors">
-                            <!-- <input type="text" onkeyup="onTextInput(this.value)"> -->
-                            <h3>Fill</h3>    
-                            <input onchange="onColorPick(this.value,name)" type="color" name="borderColor" value="#bdf524" />
-    
-                            <h3>Border</h3>
-                            <input class="fill-color-img" onchange="onColorPick(this.value,name)" type="color" name="fillColor" value="#FFFFFF" />
-    
-                        </div>
+                    <div class="editor-text-control">
+                        <button onclick="onDeleteLine()"><img src="./images/editorImg/delete.png" alt=""></button>
+
+                        <button onclick="onAddLine()"><img src="./images/editorImg/add.png" alt=""></button>
+                        <button onclick="onFontSizeChange(name)" name="minus"><img src="./images/editorImg/minus.png"
+                                alt=""></button>
+                        <button onclick="onFontSizeChange(name)" name="plus"><img src="./images/editorImg/plus.png"
+                                alt=""></button>
+                    </div>
+
+                    <label for="texto">Do Something</label>
+                    <input class="text-input" id="texto" type="text" onkeyup="onTextInput(this.value)">
+
+                    <div class="control-box-colors">
+                        <h3>Fill</h3>
+                        <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
+                            value="#bdf524" />
+
+                        <h3>Border</h3>
+                        <input class="fill-color-img" onchange="onColorPick(this.value,name)" type="color"
+                            name="fillColor" value="#FFFFFF" />
+
+                    </div>
                 </div>
                 <div class="emojis-container">
                     <div class="emojis">

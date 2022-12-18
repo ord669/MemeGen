@@ -17,7 +17,7 @@ function onInitMeme() {
     //Calc the center of the canvas
     const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     //Create the circle in the center
-    // createCircle(center)
+    createCircle(center)
 
     addListeners()
     // renderCanvas()
@@ -41,6 +41,7 @@ function renderMeme() {
     drawImg().onload = () => {
         gMeme.lines.forEach(line => {
             drawText(line, line.x, line.y)
+
         })
     }
 
@@ -69,16 +70,26 @@ function onDown(ev) {
 
 function onMove(ev) {
     if (!gMeme.lines.find(line => line.isFocus)) return
+
     const { isDrag } = gMeme.lines.find(line => line.isFocus)
 
     if (!isDrag) return
 
 
+
     const pos = getEvPos(ev)
-    console.log('pos:', pos)
+    const { x, y } = pos
+
     // Calc the delta , the diff we moved
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
+
+    if (isCircleClicked(pos)) {
+        if (x > gStartPos.x || y > gStartPos.y) onResizeLine(true)
+        if (x < gStartPos.x || y < gStartPos.y) onResizeLine(false)
+
+    }
+
     moveLine(dx, dy)
     // Save the last pos , we remember where we`ve been and move accordingly
     gStartPos = pos
@@ -125,6 +136,7 @@ function getEvPos(ev) {
 }
 
 function onTextInput(ev) {
+    console.log('work:', 'work')
     setLineTxt(ev)
     renderMeme()
 
@@ -248,6 +260,51 @@ function onUploadImg() {
 function downloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
+}
+
+
+
+
+
+
+
+
+
+
+
+//*! circle
+function drawArc(x, y, size = 6, color = 'blue') {
+    gCtx.beginPath()
+    gCtx.lineWidth = '6'
+    gCtx.arc(x, y, size, 0, 2 * Math.PI)
+    gCtx.strokeStyle = 'white'
+    gCtx.stroke()
+    gCtx.fillStyle = color
+    gCtx.fill()
+
+}
+
+
+
+function renderCircle() {
+    //Get the props we need from the circle
+    const { pos, color, size } = getCircle()
+    //Draw the circle
+    drawArc(pos.x, pos.y, size, color)
+}
+
+
+
+
+function onResizeLine(minusPlus) {
+    if (minusPlus) {
+        resizeLine(minusPlus)
+    } else {
+        resizeLine(false)
+
+    }
+
+    renderMeme()
 }
 
 

@@ -49,9 +49,13 @@
 
 .search-words p {
     cursor: pointer;
+    position: relative;
 }
 
 
+.text-input{
+    opacity: 0;
+}
 
 
 

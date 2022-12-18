@@ -2,6 +2,8 @@
 
 
 let gSelctedImg
+let gCircle
+
 
 const STORAGE_KEY = 'saved-memes'
 let gSavedMemes = loadFromStorage(STORAGE_KEY) || []
@@ -107,19 +109,29 @@ function drawText(line, x, y) {
     line.borderTop = y - metrics.actualBoundingBoxAscent
     line.borderBottom = y + line.hight
     line.borderLeft = x - metrics.actualBoundingBoxLeft - 5
-    line.borderRight = x + line.width /2
+    line.borderRight = x + line.width / 2 + 10
 
-    if (text.length > 0 && line.isFocus) drawRect(x - metrics.actualBoundingBoxLeft - 5, y - metrics.actualBoundingBoxAscent - 5, line.width + 10, line.hight + 10)
+    if (text.length > 0 && line.isFocus) {
+        drawRect(x - metrics.actualBoundingBoxLeft - 5, y - metrics.actualBoundingBoxAscent - 5, line.width + 10, line.hight + 10)
+        // drawArc(line.borderRight -10, line.borderBottom -20)
+        drawArc(line.borderRight - 5, line.borderBottom - 20, line.size / 7)
+        gCtx.lineWidth = 2
+        gCtx.strokeStyle = line.fillColor
+        gCtx.fillStyle = line.textColor
+        gCtx.font = `${line.size}px arial`;
+        gCtx.textAlign = 'center'
+        gCtx.textBaseline = 'middle'
+    }
 
 
-    console.log('line:', line)
+
     gCtx.fillText(text, x, y) // Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(text, x, y) // Draws (strokes) a given text at the given (x, y) position.
 }
 
 
 function setLineTxt(text) {
-    console.log('text:',text)
+    console.log('text:', text)
     gMeme.lines.find(line => line.isFocus).txt = text
 
 }
@@ -212,7 +224,6 @@ function getEmojiSelect(emoji) {
     const emojiToAdd = emojis.find(emo => emo.name === emoji)
     const emojiToPush = createLine(emojiToAdd.emoji)
     gMeme.lines.push(emojiToPush)
-    console.log('emojiToPush:', emojiToPush)
     makeFocus(emojiToPush.id)
 
 }
@@ -237,12 +248,12 @@ function createLine(txt = 'new line', x = 250, y = 350) {
 function addLine() {
     const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     console.log('center:', center)
-    const x = getRandomInt(center.x, (gElCanvas.width/6))
+    const x = getRandomInt(center.x, (gElCanvas.width / 6))
     console.log('x:', x)
-    const y =getRandomInt(center.y, (gElCanvas.height/6))
+    const y = getRandomInt(center.y, (gElCanvas.height / 6))
     console.log('y:', y)
 
-    const newLine = createLine('new line',x,y)
+    const newLine = createLine('new line', x, y)
     gMeme.lines.push(newLine)
     makeFocus(newLine.id)
 
@@ -283,7 +294,6 @@ function setLineDrag(isDrag) {
 
 
 function moveLine(dx, dy) {
-    console.log('gMeme.lines.find(line => line.isFocus):', gMeme.lines.find(line => line.isFocus))
     gMeme.lines.find(line => line.isFocus).x += dx
     gMeme.lines.find(line => line.isFocus).y += dy
 }
@@ -312,19 +322,19 @@ function findClick(clickedPos) {
 
 
     const lineFind = gMeme.lines.find(line =>
-        x > line.borderLeft  &&
-        x < line.borderRight  &&
+        x > line.borderLeft &&
+        x < line.borderRight &&
         y < line.borderBottom &&
         y > line.borderTop
     )
 
     console.log('lineFind:', lineFind)
-    if (lineFind){
+    if (lineFind) {
         isClicked = true
         makeFocus(lineFind.id)
-        inputLine=''
+        inputLine = ''
 
-    } 
+    }
     // if(x - (width/2)<x &&x < x+(width/2)){
     //     
     // }
@@ -353,7 +363,7 @@ function findClick(clickedPos) {
 
 
 
-function removeLine(){
+function removeLine() {
     const idx = gMeme.lines.findIndex(line => line.isFocus)
     gMeme.lines.splice(idx, 1)
 
@@ -362,19 +372,19 @@ function removeLine(){
 
 
 //*! inputline
-var inputLine =''
+var inputLine = ''
 
 
-function setTextInputInline(keypress,isBack){
-    if(isBack){
+function setTextInputInline(keypress, isBack) {
+    if (isBack) {
         console.log('in:', 'in')
         console.log('inputLine:', inputLine)
         inputLine = inputLine.substring(0, inputLine.length - 1)
         console.log('inputLine:', inputLine)
         onTextInput(inputLine)
-    }else{
+    } else {
         inputLine += `${keypress}`
-        console.log('inputLine:',inputLine )
+        console.log('inputLine:', inputLine)
         onTextInput(inputLine)
 
     }
@@ -388,7 +398,53 @@ function cancelFocus() {
     gMeme.lines.forEach(line => line.isFocus = false)
 
     renderMeme()
-    
 
 
+
+}
+
+
+
+
+
+//*! circle
+
+function createCircle(pos) {
+    gCircle = {
+        pos,
+        size: 60,
+        color: 'blue',
+        isDrag: false
+    }
+}
+
+function getCircle() {
+    return gCircle
+}
+
+
+
+
+
+function resizeLine(minusPlus) {
+    const lineTochange = gMeme.lines.find(line => line.isFocus)
+    if (minusPlus) {
+        console.log('up:', 'up')
+        lineTochange.size += 1
+    } else {
+        lineTochange.size -= 1
+    }
+}
+
+
+
+
+//Check if the click is inside the circle 
+function isCircleClicked(clickedPos) {
+    console.log('clocl:', 'clocl')
+    const { pos } = gCircle
+    // Calc the distance between two dots
+    const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)
+    //If its smaller then the radius of the circle we are inside
+    return distance <= gCircle.size
 }

@@ -116,9 +116,7 @@ function renderGallery(filterd) {
 
 function onImgSelect(id) {
     gMeme.lines=[]
-    console.log('id:', id)
     setImg(id)
-    console.log('gMeme.id :', gMeme.id)
     renderMeme()
     
     toggleDisplay(false, 'editor')

@@ -37,7 +37,6 @@ function onSwitchLine() {
 function toggleDisplay(ev, pressedOn) {
     if (ev) ev.stopPropagation() 
 
-    console.log('pressedOn:', pressedOn)
     switch (pressedOn) {
         case 'memes':
             document.querySelector('.gallery').classList.add('display')
