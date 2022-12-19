@@ -136,7 +136,6 @@ function getEvPos(ev) {
 }
 
 function onTextInput(ev) {
-    console.log('work:', 'work')
     setLineTxt(ev)
     renderMeme()
 
@@ -144,11 +143,14 @@ function onTextInput(ev) {
 function onSaveMeme() {
     cancelFocus()
     setTimeout(() => {
+
         setMemeToSave()
         renderMemeGallery()
         renderMeme()
         toggleDisplay(false, 'memes')
 
+
+        
     }, 100);
 }
 
@@ -258,13 +260,8 @@ function onUploadImg() {
 
 
 function downloadImg(elLink) {
-
-    cancelFocus()
-    setTimeout(() => {
-        renderMeme()
-        const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
-        elLink.href = imgContent
-    }, 100);
+    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+    elLink.href = imgContent
 }
 
 

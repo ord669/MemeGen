@@ -13,9 +13,7 @@ var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     img: '',
-    lines: [
-
-    ]
+    lines: []
 }
 
 
@@ -23,42 +21,34 @@ const emojis = [
     {
         emoji: '😀',
         name: 'happy'
-
     },
     {
         emoji: '😅',
         name: 'sweet'
-
     },
     {
         emoji: '🥹',
         name: 'about-to-cry'
-
     },
     {
         emoji: '😜',
         name: 'thong-out'
-
     },
     {
         emoji: '😱',
         name: 'sceard'
-
     },
     {
         emoji: '🤯',
         name: 'mind-blown'
-
     },
     {
         emoji: '😬',
         name: 'afraid'
-
     },
     {
         emoji: '🤢',
         name: 'sick'
-
     }
 ]
 
@@ -83,10 +73,6 @@ let { lines } = gMeme.lines
 function drawImg() {
     const elImg = new Image() // Create a new html img element
     elImg.src = gImgs[gMeme.selectedImgId].url // Send a network req to get that image, define the img src
-    // setTimeout(() => {
-    //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-    // }, 10);
-    // When the image ready draw it on the canvas
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     }
@@ -180,7 +166,6 @@ function setFocusState(idx) {
 function getMemeFromSaved(id) {
 
     const memeToLoad = gSavedMemes.find(meme => meme.id === id)
-
     gMeme = { ...memeToLoad }
     gMeme.id = makeId(length = 6)
 
@@ -441,7 +426,6 @@ function resizeLine(minusPlus) {
 
 //Check if the click is inside the circle 
 function isCircleClicked(clickedPos) {
-    console.log('clocl:', 'clocl')
     const { pos } = gCircle
     // Calc the distance between two dots
     const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)

@@ -85,22 +85,26 @@
                                 alt=""></button>
                         <button onclick="onFontSizeChange(name)" name="plus"><img src="./images/editorImg/plus.png"
                                 alt=""></button>
-                    </div>
+                                <div class="colors">
+                                    <img src="./images/editorImg/stroke.png" alt="">
+                                    <input class="fill-color-img" onchange="onColorPick(this.value,name)" type="color"
+                                    name="borderColor" value="#bdf524" />
+                                </div>
+                                
+                                <div class="colors">
+                                    <img src="./images/editorImg/fill.png" alt="">
+                                    <input class="fill-color-img" onchange="onColorPick(this.value,name)" type="color"
+                                    name="fillColor" value="#FFFFFF" />
+                                </div>
+                                
+                            </div>
 
-                    <label for="texto">Do Something</label>
-                    <input class="texto" id="texto" type="text" onkeyup="onTextInput(this.value)">
+                            
+                            
+                        </div>
 
-                    <div class="control-box-colors">
-                        <h3>Fill</h3>
-                        <input onchange="onColorPick(this.value,name)" type="color" name="borderColor"
-                            value="#bdf524" />
-
-                        <h3>Border</h3>
-                        <input class="fill-color-img" onchange="onColorPick(this.value,name)" type="color"
-                            name="fillColor" value="#FFFFFF" />
-
-                    </div>
-                </div>
+                            <input class="texto" type="text" onkeyup="onTextInput(this.value)">
+                        
                 <div class="emojis-container">
                     <div class="emojis">
                     </div>
